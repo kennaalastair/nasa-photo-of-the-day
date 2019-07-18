@@ -25,9 +25,14 @@ function App() {
   return (
     <div className="App">
       <img src="https://ih0.redbubble.net/image.562683752.7556/pp,550x550.u6.jpg" style={{ height: '150px', width: '150px' }} />
-      <Header title={data.title} date={data.date} />
-      <Picture url={data.url} />
-      <Explanation explanation={data.explanation} />
+      { data ? 
+        <div>
+          <Header title={data.title} date={data.date} />
+          <Picture url={data.url} />
+          <Explanation explanation={data.explanation} />
+        </div>
+        : <div>Loading</div>
+      }
     </div>
   );
 }
