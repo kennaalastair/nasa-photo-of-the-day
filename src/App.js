@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import Header from "./Components/Header";
+import Picture from "./Components/Picture";
+import Explanation from "./Components/Explanation";
+
+import axios from "axios";
+
 import "./App.css";
-import ApodGrid from "./Components/ApodGrid";
 
 function App() {
+  const [dateState, setDateState] = useState([]);
+  const [titleState, setTitleState] = useState([]);
+  const [explanationState, setExplanationState] = useState([]);
+  const  [urlState, setUrlState] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('https://api.nasa.gov/planetary/apod?api_key=Iljplx6QAEN6gCcQhBm3u5H56waqJ4FP2piyTjUi')
+      .then(res => {
+        setDateState(res.data.date);
+        setTitleState(res.data.title);
+        setExplanationState(res.data.explanation);
+        setUrlState(res.data.url);
+      })
+      .catch(err => {
+        console.log('An unexpected error has occured, please try again later', err);
+      })
+  }, []);
+
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role='img' aria-label='rocket'>🚀</span>!
-      </p>
-      <ApodGrid data />
+      <img src="https://ih0.redbubble.net/image.562683752.7556/pp,550x550.u6.jpg" style={{ height: '150px', width: '150px' }} />
+      <Header titleState={titleState} dateState={dateState} />
+      <Picture urlState={urlState} />
+      <Explanation explanationState={explanationState} />
     </div>
   );
 }
