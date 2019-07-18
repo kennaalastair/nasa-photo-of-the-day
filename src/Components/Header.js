@@ -1,11 +1,12 @@
 import React from 'react';
+// import Image from "./StyledWidgets.js";
 
 const Header = (props) => {
     return (
         <div className="header-container">
-            <p>Picture of the day</p>
-            <p>{props.title}</p>
-            <p>{props.date}</p>
+            <p className="header">Picture of the day</p>
+            <p className="title">{props.title}</p>
+            <p className="date">{props.date}</p>
         </div>
     );
 }

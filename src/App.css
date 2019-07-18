@@ -1,5 +1,15 @@
 .App {
   text-align: center;
+  background: #9EF0FF;
+  height: 100vh;
+}
+
+.container {
+  display: inline-block;
+  width: 900px;
+  height: 100%;
+  background: #fff;
+  padding: 0 50px;
 }
 
 .App-logo {

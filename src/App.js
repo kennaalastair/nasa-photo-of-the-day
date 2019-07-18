@@ -8,6 +8,8 @@ import axios from "axios";
 
 import "./App.css";
 
+
+
 function App() {
   const [data, setData] = useState({});
 
@@ -15,6 +17,7 @@ function App() {
     axios
       .get('https://api.nasa.gov/planetary/apod?api_key=Iljplx6QAEN6gCcQhBm3u5H56waqJ4FP2piyTjUi')
       .then(res => {
+        console.log(res.data);
         setData(res.data);
       })
       .catch(err => {
@@ -24,15 +27,17 @@ function App() {
 
   return (
     <div className="App">
-      <img src="https://ih0.redbubble.net/image.562683752.7556/pp,550x550.u6.jpg" style={{ height: '150px', width: '150px' }} />
-      { data ? 
-        <div>
-          <Header title={data.title} date={data.date} />
-          <Picture url={data.url} />
-          <Explanation explanation={data.explanation} />
-        </div>
-        : <div>Loading</div>
-      }
+      <div className="container">
+        <img src="https://ih0.redbubble.net/image.562683752.7556/pp,550x550.u6.jpg" style={{ height: '150px', width: '150px' }} />
+        { data ? 
+          <div>
+            <Header title={data.title} date={data.date} />
+            <Picture url={data.url} />
+            <Explanation explanation={data.explanation} />
+          </div>
+          : <div>Loading</div>
+        }
+      </div>
     </div>
   );
 }
